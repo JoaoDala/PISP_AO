@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcar Consulta - PISP Angola</title>
+  <style>
+    body {
+      background-color: #111;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+    h2 {
+      text-align: center;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #ccc;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      background-color: #cc0000;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a80000;
+    }
+    .mensagem {
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Marcar Consulta</h2>
+    <form id="consultaForm">
+      <label for="nome">Nome Completo</label>
+      <input type="text" id="nome" required>
+
+      <label for="bi">Número do BI</label>
+      <input type="text" id="bi" required>
+
+      <label for="especialidade">Especialidade</label>
+      <select id="especialidade" required>
+        <option value="">Selecione</option>
+        <option value="clinica geral">Clínica Geral</option>
+        <option value="pediatria">Pediatria</option>
+        <option value="ginecologia">Ginecologia</option>
+        <option value="dermatologia">Dermatologia</option>
+      </select>
+
+      <label for="provincia">Província</label>
+      <select id="provincia" required>
+        <option value="">Selecione</option>
+        <option value="Luanda">Luanda</option>
+        <option value="Benguela">Benguela</option>
+        <option value="Huambo">Huambo</option>
+        <option value="Huila">Huíla</option>
+      </select>
+
+      <label for="data">Data da Consulta</label>
+      <input type="date" id="data" required>
+
+      <button type="submit">Marcar Consulta</button>
+      <div class="mensagem" id="mensagem"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('consultaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const bi = document.getElementById('bi').value.trim();
+      const especialidade = document.getElementById('especialidade').value;
+      const provincia = document.getElementById('provincia').value;
+      const data = document.getElementById('data').value;
+      const mensagem = document.getElementById('mensagem');
+
+      if (!nome || !bi || !especialidade || !provincia || !data) {
+        mensagem.textContent = 'Por favor, preencha todos os campos.';
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      mensagem.textContent = 'Consulta marcada com sucesso!';
+      mensagem.style.color = '#00ff99';
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status do Pedido de Bilhete - PISP Angola</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #ffcc00;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2a2a2a;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e60000;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #2a2a2a;
+      border-left: 5px solid #ffcc00;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Consultar Pedido de Bilhete</h2>
+    <label for="numeroBI">Número do BI</label>
+    <input type="text" id="numeroBI" placeholder="Digite seu número do BI">
+    <button onclick="verificarStatus()">Verificar</button>
+
+    <div id="resultado" class="status"></div>
+  </div>
+
+  <script>
+    function verificarStatus() {
+      const bi = document.getElementById("numeroBI").value.trim();
+      const resultado = document.getElementById("resultado");
+
+      if (!bi) {
+        resultado.style.display = 'block';
+        resultado.style.color = '#ff3333';
+        resultado.innerText = "Por favor, insira o número do BI.";
+        return;
+      }
+
+      // Simulação de verificação (em produção, viria do backend)
+      resultado.style.display = 'block';
+      resultado.style.color = '#00ff99';
+      resultado.innerText = `O pedido do bilhete com o número ${bi} está EM PROCESSAMENTO.`;
+    }
+  </script>
+</body>
+</html>

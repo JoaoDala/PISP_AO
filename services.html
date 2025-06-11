@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - PISP-ANGOLA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: #000000;
+            border-bottom: 2px solid #8B0000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .logo::before {
+            content: "🏛️";
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #FFD700;
+        }
+
+        .nav-menu a::before {
+            font-size: 16px;
+        }
+
+        .nav-menu a[href*="inicio"]::before { content: "🏠"; }
+        .nav-menu a[href*="servicos"]::before { content: "⚙️"; }
+        .nav-menu a[href*="sobre"]::before { content: "ℹ️"; }
+        .nav-menu a[href*="contatos"]::before { content: "📞"; }
+
+        /* Main Content */
+        .main-content {
+            min-height: calc(100vh - 200px);
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #FFD700;
+            margin: 20px auto 0;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            padding: 25px;
+            color: #ffffff;
+        }
+
+        .service-header h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-icon {
+            font-size: 24px;
+        }
+
+        .service-body {
+            padding: 25px;
+        }
+
+        .service-description {
+            color: #cccccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            color: #FFD700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .service-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .status-available {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .status-coming-soon {
+            background: rgba(255, 165, 0, 0.2);
+            color: #FFA500;
+        }
+
+        .btn-access {
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-access:hover {
+            background: linear-gradient(135deg, #B22222, #DC143C);
+            transform: scale(1.05);
+        }
+
+        .btn-access:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            border-top: 2px solid #8B0000;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #FFD700;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: #cccccc;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #FFD700;
+        }
+
+        .footer-section a::before {
+            content: "▶";
+            font-size: 10px;
+            color: #FFD700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+
+            .page-title h1 {
+                font-size: 36px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">PISP-ANGOLA</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="servicos.html" class="active">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contatos.html">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>Nossos Serviços</h1>
+                <p>Acesso simplificado aos principais serviços governamentais do país</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Serviços -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">⚙️</span> Serviços</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-available">Disponível</div>
+                        <p class="service-description">Acesso a diversos serviços governamentais integrados numa única plataforma.</p>
+                        <ul class="service-features">
+                            <li>Pagamentos online</li>
+                            <li>Consulta de status</li>
+                            <li>Histórico de transações</li>
+                            <li>Suporte 24/7</li>
+                        </ul>
+                        <a href="#" class="btn-access">Aceder aos Serviços</a>
+                    </div>
+                </div>
+
+                <!-- Marcação de Consultas Médicas -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">🗓️</span> Marcação de Consultas Médicas</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-available">Disponível</div>
+                        <p class="service-description">Agende consultas em unidades hospitalares de forma rápida e conveniente através do nosso portal.</p>
+                        <ul class="service-features">
+                            <li>Marcação online 24/7</li>
+                            <li>Escolha de especialidade</li>
+                            <li>Confirmação automática</li>
+                            <li>Lembretes por SMS</li>
+                        </ul>
+                        <a href="#" class="btn-access">Marcar Consulta</a>
+                    </div>
+                </div>
+
+                <!-- Bilhete de Identidade -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">🆔</span> Bilhete de Identidade</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-available">Disponível</div>
+                        <p class="service-description">Solicite ou renove o seu Bilhete de Identidade de forma simplificada, evitando filas e burocracias desnecessárias.</p>
+                        <ul class="service-features">
+                            <li>Solicitação online</li>
+                            <li>Renovação simplificada</li>
+                            <li>Agendamento de recolha</li>
+                            <li>Acompanhamento do processo</li>
+                        </ul>
+                        <a href="#" class="btn-access">Solicitar BI</a>
+                    </div>
+                </div>
+
+                <!-- Pagamento de Impostos e Taxas -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">💰</span> Pagamento de Impostos e Taxas</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-available">Disponível</div>
+                        <p class="service-description">Pague impostos e taxas governamentais online de forma segura e em qualquer lugar, 24 horas por dia.</p>
+                        <ul class="service-features">
+                            <li>Pagamento seguro online</li>
+                            <li>Múltiplas formas de pagamento</li>
+                            <li>Recibos digitais</li>
+                            <li>Histórico completo</li>
+                        </ul>
+                        <a href="#" class="btn-access">Pagar Impostos</a>
+                    </div>
+                </div>
+
+                <!-- Multicaixa Express -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">💳</span> Multicaixa Express</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-available">Disponível</div>
+                        <p class="service-description">Veja as mudanças dos seus pedidos mais recentes em tempo real através da integração com Multicaixa Express.</p>
+                        <ul class="service-features">
+                            <li>Atualizações em tempo real</li>
+                            <li>Histórico de transações</li>
+                            <li>Notificações automáticas</li>
+                            <li>Integração bancária</li>
+                        </ul>
+                        <a href="#" class="btn-access">Aceder ao Multicaixa</a>
+                    </div>
+                </div>
+
+                <!-- Certidões e Documentos -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3><span class="service-icon">📄</span> Certidões e Documentos</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-status status-coming-soon">Em Breve</div>
+                        <p class="service-description">Solicite certidões de nascimento, casamento, óbito e outros documentos oficiais online.</p>
+                        <ul class="service-features">
+                            <li>Certidão de nascimento</li>
+                            <li>Certidão de casamento</li>
+                            <li>Certidão de óbito</li>
+                            <li>Entrega digital</li>
+                        </ul>
+                        <button class="btn-access" disabled>Em Desenvolvimento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PISP-ANGOLA</h3>
+                <p>O Portal Integrado de Serviços Públicos de Angola oferece acesso simplificado e centralizado aos principais serviços governamentais do país.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="#">Perguntas Frequentes</a></li>
+                    <li><a href="contatos.html">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Serviços</h3>
+                <ul>
+                    <li><a href="#">Marcação de Consultas</a></li>
+                    <li><a href="#">Bilhete de Identidade</a></li>
+                    <li><a href="#">Pagamento de Impostos</a></li>
+                    <li><a href="#">Multicaixa Express</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contactos</h3>
+                <p>📍 Luanda, Angola</p>
+                <p>📞 +244 923 456 789</p>
+                <p>✉️ info@pisp-angola.gov.ao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PISP-ANGOLA. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

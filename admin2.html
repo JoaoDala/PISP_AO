@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - PISP Angola</title>
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #ffcc00;
+    }
+    .painel {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #1f1f1f;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background-color: #ff0000;
+      color: #fff;
+    }
+    tr:hover {
+      background-color: #2a2a2a;
+    }
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .aceitar {
+      background-color: #00cc66;
+      color: #fff;
+    }
+    .rejeitar {
+      background-color: #cc0000;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Painel do Administrador</h1>
+
+  <div class="painel">
+    <h2>Pedidos de Bilhete</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data Nasc.</th>
+          <th>Tipo</th>
+          <th>Nº BI</th>
+          <th>Local</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaPedidos">
+        <tr>
+          <td>João Manuel</td>
+          <td>2002-04-10</td>
+          <td>2ª Via</td>
+          <td>004524127LA035</td>
+          <td>Luanda</td>
+          <td>
+            <button class="btn aceitar">Aceitar</button>
+            <button class="btn rejeitar">Rejeitar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Marta Silva</td>
+          <td>1999-11-30</td>
+          <td>1ª Via</td>
+          <td>-</td>
+          <td>Benguela</td>
+          <td>
+            <button class="btn aceitar">Aceitar</button>
+            <button class="btn rejeitar">Rejeitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.querySelectorAll('.aceitar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert("Pedido aceito!");
+      });
+    });
+    document.querySelectorAll('.rejeitar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert("Pedido rejeitado!");
+      });
+    });
+  </script>
+</body>
+</html>
